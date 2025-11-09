@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Yousif Abdelgawad - Portfolio</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      :root {
+        --primary-blue: #007bff;
+        --light-bg: #ffffff;
+        --light-text: #0d1117;
+        --light-secondary: #f8f9fa;
+        --dark-bg: #0d1117;
+        --dark-text: #ffffff;
+        --dark-secondary: #1c2128;
+        --shadow: rgba(0, 123, 255, 0.1);
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        transition: all 0.3s ease;
+        background: var(--light-bg);
+        color: var(--light-text);
+      }
+
+      body.dark-mode {
+        background: var(--dark-bg);
+        color: var(--dark-text);
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation */
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: var(--light-bg);
+        box-shadow: 0 2px 10px var(--shadow);
+        z-index: 1000;
+        transition: all 0.3s ease;
+      }
+
+      body.dark-mode nav {
+        background: var(--dark-secondary);
+      }
+
+      nav .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+      }
+
+      .logo {
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--primary-blue);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 30px;
+        list-style: none;
+        align-items: center;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: inherit;
+        transition: color 0.3s;
+        font-weight: 500;
+      }
+
+      .nav-links a:hover,
+      .nav-links a.active {
+        color: var(--primary-blue);
+      }
+
+      .theme-toggle {
+        background: var(--primary-blue);
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.05);
+      }
+
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .menu-toggle span {
+        width: 25px;
+        height: 3px;
+        background: currentColor;
+        transition: all 0.3s;
+      }
+
+      /* Hero Section */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 100px 20px 50px;
+      }
+
+      .profile-circle {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        background: linear-gradient(135deg, var(--primary-blue), #0056b3);
+        margin: 0 auto 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 40px rgba(0, 123, 255, 0.4);
+        animation: glow 2s ease-in-out infinite;
+        overflow: hidden;
+      }
+
+      @keyframes glow {
+        0%,
+        100% {
+          box-shadow: 0 0 40px rgba(0, 123, 255, 0.4);
+        }
+        50% {
+          box-shadow: 0 0 60px rgba(0, 123, 255, 0.6);
+        }
+      }
+
+      .profile-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        margin-bottom: 15px;
+        color: var(--primary-blue);
+      }
+
+      .hero p {
+        font-size: 20px;
+        margin-bottom: 30px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .btn-group {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s;
+        border: 2px solid var(--primary-blue);
+      }
+
+      .btn-primary {
+        background: var(--primary-blue);
+        color: white;
+      }
+
+      .btn-primary:hover {
+        background: #0056b3;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary-blue);
+      }
+
+      body.dark-mode .btn-secondary {
+        color: var(--primary-blue);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary-blue);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Sections */
+      section {
+        padding: 80px 20px;
+      }
+
+      body.dark-mode section:nth-child(even) {
+        background: var(--dark-secondary);
+      }
+
+      body:not(.dark-mode) section:nth-child(even) {
+        background: var(--light-secondary);
+      }
+
+      .section-title {
+        font-size: 36px;
+        margin-bottom: 40px;
+        text-align: center;
+        color: var(--primary-blue);
+      }
+
+      /* About Section */
+      .about-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 18px;
+        line-height: 1.8;
+      }
+
+      /* Skills Section */
+      .skills-container {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .skill-category h3 {
+        margin-bottom: 15px;
+        color: var(--primary-blue);
+        font-size: 22px;
+      }
+
+      .skill-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .skill-tag {
+        background: var(--primary-blue);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 20px;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s;
+      }
+
+      .skill-tag:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+      }
+
+      /* Projects Grid */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .project-card {
+        background: var(--light-bg);
+        border-radius: 15px;
+        padding: 25px;
+        box-shadow: 0 5px 20px var(--shadow);
+        transition: all 0.3s;
+        display: flex;
+        flex-direction: column;
+      }
+
+      body.dark-mode .project-card {
+        background: var(--dark-bg);
+      }
+
+      .project-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 123, 255, 0.2);
+      }
+
+      .project-card h3 {
+        color: var(--primary-blue);
+        margin-bottom: 15px;
+        font-size: 22px;
+      }
+
+      .project-card p {
+        margin-bottom: 15px;
+        line-height: 1.6;
+        flex-grow: 1;
+      }
+
+      .project-tools {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 15px;
+      }
+
+      .tool-tag {
+        background: var(--light-secondary);
+        padding: 5px 12px;
+        border-radius: 12px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--primary-blue);
+      }
+
+      body.dark-mode .tool-tag {
+        background: var(--dark-secondary);
+      }
+
+      .project-outcome {
+        font-weight: 600;
+        color: var(--primary-blue);
+        margin-top: 10px;
+      }
+
+      .project-links {
+        display: flex;
+        gap: 15px;
+        margin-top: auto;
+      }
+
+      .project-link {
+        color: var(--primary-blue);
+        text-decoration: none;
+        font-weight: 600;
+        display: inline-block;
+        margin-top: 10px;
+        transition: all 0.3s;
+      }
+
+      .project-link:hover {
+        text-decoration: underline;
+        transform: translateY(-2px);
+      }
+
+      /* Initiatives, Research, Honors */
+      .timeline {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .timeline-item {
+        background: var(--light-bg);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 5px 20px var(--shadow);
+        border-left: 4px solid var(--primary-blue);
+        transition: all 0.3s;
+      }
+
+      body.dark-mode .timeline-item {
+        background: var(--dark-bg);
+      }
+
+      .timeline-item:hover {
+        transform: translateX(10px);
+      }
+
+      .timeline-item h3 {
+        color: var(--primary-blue);
+        margin-bottom: 10px;
+        font-size: 20px;
+      }
+
+      .timeline-item .year {
+        color: var(--primary-blue);
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+
+      .timeline-item p {
+        line-height: 1.6;
+      }
+
+      .timeline-item a {
+        color: var(--primary-blue);
+        text-decoration: none;
+        transition: all 0.3s;
+      }
+
+      .timeline-item a:hover {
+        text-decoration: underline;
+      }
+
+      /* Contact Section */
+      .contact-section {
+        background: var(--primary-blue);
+        color: white;
+      }
+
+      .contact-content {
+        max-width: 600px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .contact-section .section-title {
+        color: white;
+      }
+
+      .contact-links {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+
+      .contact-link {
+        color: white;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: 600;
+        transition: all 0.3s;
+        padding: 10px 20px;
+        border: 2px solid white;
+        border-radius: 25px;
+      }
+
+      .contact-link:hover {
+        background: white;
+        color: var(--primary-blue);
+        transform: translateY(-3px);
+      }
+
+      /* Footer */
+      footer {
+        text-align: center;
+        padding: 30px 20px;
+        background: var(--light-secondary);
+      }
+
+      body.dark-mode footer {
+        background: var(--dark-secondary);
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .nav-links {
+          position: fixed;
+          top: 60px;
+          right: -100%;
+          background: var(--light-bg);
+          flex-direction: column;
+          width: 70%;
+          height: calc(100vh - 60px);
+          padding: 30px;
+          box-shadow: -5px 0 15px var(--shadow);
+          transition: right 0.3s;
+        }
+
+        body.dark-mode .nav-links {
+          background: var(--dark-secondary);
+        }
+
+        .nav-links.active {
+          right: 0;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .hero p {
+          font-size: 18px;
+        }
+
+        .section-title {
+          font-size: 28px;
+        }
+
+        .projects-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .profile-circle {
+          width: 150px;
+          height: 150px;
+        }
+        
+        .project-links {
+          flex-direction: column;
+          gap: 10px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav>
+      <div class="container">
+        <div class="logo">Yousif Abdelgawad</div>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#home" class="nav-link active" onclick="closeMenu()">Home</a></li>
+          <li><a href="#about" class="nav-link" onclick="closeMenu()">About</a></li>
+          <li><a href="#skills" class="nav-link" onclick="closeMenu()">Skills</a></li>
+          <li><a href="#projects" class="nav-link" onclick="closeMenu()">Projects</a></li>
+          <li><a href="#activities" class="nav-link" onclick="closeMenu()">Activities</a></li>
+          <li><a href="#research" class="nav-link" onclick="closeMenu()">Research</a></li>
+          <li><a href="#honors" class="nav-link" onclick="closeMenu()">Honors</a></li>
+          <li><a href="#contact" class="nav-link" onclick="closeMenu()">Contact</a></li>
+          <li>
+            <button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+          </li>
+        </ul>
+        <button class="menu-toggle" onclick="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="container">
+        <div class="profile-circle">
+          <img src="https://via.placeholder.com/200" alt="Yousif Abdelgawad" />
+        </div>
+        <h1>Hi, I'm Yousif Abdelgawad</h1>
+        <p>
+          Aspiring AI Researcher & Entrepreneur passionate about creating
+          innovative solutions that make a difference.
+        </p>
+        <div class="btn-group">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+      <div class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+          <p>
+            I am a dedicated student at Dakahlia STEM School with a passion for
+            artificial intelligence, computer science, and entrepreneurship. My
+            journey combines rigorous academic pursuits with hands-on research,
+            innovative projects, and community leadership. I'm driven by a
+            desire to create technology that solves real-world problems and
+            improves people's lives.
+          </p>
+          <p>
+            With a GPA of 3.86/4.0 and ranking in the top 5 of my class, I
+            maintain academic excellence while actively engaging in research,
+            competitions, and entrepreneurial ventures. My future plans include
+            pursuing a doctorate degree and becoming a business owner in the
+            technology sector.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+      <div class="container">
+        <h2 class="section-title">Skills</h2>
+        <div class="skills-container">
+          <div class="skill-category">
+            <h3>Technical Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Artificial Intelligence</span>
+              <span class="skill-tag">Machine Learning</span>
+              <span class="skill-tag">3D Perception</span>
+              <span class="skill-tag">Computer Vision</span>
+              <span class="skill-tag">Full-Stack Development</span>
+              <span class="skill-tag">IoT Systems</span>
+              <span class="skill-tag">React Native</span>
+              <span class="skill-tag">Data Analysis</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Programming Languages</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">JavaScript</span>
+              <span class="skill-tag">HTML/CSS</span>
+              <span class="skill-tag">React</span>
+              <span class="skill-tag">Bootstrap</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Soft Skills</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Leadership</span>
+              <span class="skill-tag">Entrepreneurship</span>
+              <span class="skill-tag">Team Management</span>
+              <span class="skill-tag">Communication</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Project Management</span>
+              <span class="skill-tag">Mentoring</span>
+            </div>
+          </div>
+          <div class="skill-category">
+            <h3>Languages</h3>
+            <div class="skill-tags">
+              <span class="skill-tag">Arabic (Native)</span>
+              <span class="skill-tag">English (IELTS 7.5)</span>
+              <span class="skill-tag">French</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+      <div class="container">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card">
+            <h3>Ech-U Traffic System</h3>
+            <p>
+              AI-powered React Native application with 98% accuracy for traffic
+              monitoring and accident prevention. Features include automatic
+              emergency service alerts and binaural beats to increase driver
+              alertness by 22%.
+            </p>
+            <div class="project-tools">
+              <span class="tool-tag">React Native</span>
+              <span class="tool-tag">AI</span>
+              <span class="tool-tag">3D Perception</span>
+            </div>
+            <p class="project-outcome">
+              <strong>Impact:</strong> Aims to reduce 1.2 million accidents
+              through comprehensive assistive technology.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <h3>DERMA - Skin Disease Diagnosis App</h3>
+            <p>
+              AI-powered application for diagnosing 20+ skin diseases with 95%
+              accuracy and 0.98 AUC score. Developed during a 72-hour hackathon
+              (DevFest).
+            </p>
+            <div class="project-tools">
+              <span class="tool-tag">AI</span>
+              <span class="tool-tag">Medical Diagnosis</span>
+              <span class="tool-tag">Mobile App</span>
+            </div>
+            <p class="project-outcome">
+              <strong>Impact:</strong> Top 15 among ~400 participants at
+              DevFest.
+            </p>
+            <div class="project-links">
+              <a href="https://github.com/abdelrahmanzero/Pr0-Coders-MansouraHackathon2024/blob/main/4-%20business%20plan.png" class="project-link" target="_blank">View Business Plan</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>Wassel Store E-commerce</h3>
+            <p>
+              Built and managed a drop-shipping e-commerce store targeting Saudi
+              Arabia market. Handled marketing strategy, customer relations, and
+              achieved $800+ in sales with ~2,000 visitors.
+            </p>
+            <div class="project-tools">
+              <span class="tool-tag">E-commerce</span>
+              <span class="tool-tag">Marketing</span>
+              <span class="tool-tag">Business Management</span>
+            </div>
+            <p class="project-outcome">
+              <strong>Impact:</strong> Successful entrepreneurial venture with
+              international customer base.
+            </p>
+            <div class="project-links">
+              <a href="https://wassel.online/" class="project-link" target="_blank">Visit Store</a>
+            </div>
+          </div>
+
+          <div class="project-card">
+            <h3>VolterraBite Energy-Saving System</h3>
+            <p>
+              Led business development for an 11-member team creating an
+              energy-saving startup system. Designed energy storage hardware and
+              built a web app to monitor energy usage.
+            </p>
+            <div class="project-tools">
+              <span class="tool-tag">IoT</span>
+              <span class="tool-tag">Web Development</span>
+              <span class="tool-tag">Business Planning</span>
+            </div>
+            <p class="project-outcome">
+              <strong>Impact:</strong> Top 5 at iGnitED competition.
+            </p>
+          </div>
+
+          <div class="project-card">
+            <h3>Independent Websites & Apps</h3>
+            <p>
+              Developed 10+ responsive websites using JavaScript, Bootstrap, and
+              React. Created e-commerce demos, IoT hardware monitoring systems,
+              and accessible smartphone projects.
+            </p>
+            <div class="project-tools">
+              <span class="tool-tag">JavaScript</span>
+              <span class="tool-tag">Bootstrap</span>
+              <span class="tool-tag">React</span>
+              <span class="tool-tag">IoT</span>
+            </div>
+            <p class="project-outcome">
+              <strong>Impact:</strong> Diverse portfolio of web development
+              projects.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Activities Section -->
+    <section id="activities">
+      <div class="container">
+        <h2 class="section-title">Activities & Leadership</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="year">2023 - Present</span>
+            <h3>Founder & President - Hack Club</h3>
+            <p>
+              Founded and leads the school's Hack Club, mentoring students,
+              organizing workshops, and teaching peers about coding, AI, and
+              problem-solving. Focuses on sharing free resources and encouraging
+              hands-on learning.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2022 - 2023</span>
+            <h3>Marketing Manager & Mentor - BAS Program</h3>
+            <p>
+              Guided 150+ applicants from Egypt, Jordan, Syria, etc. on global
+              programs (YYGS, Pioneer). Led 2 cohorts, managed outreach and
+              marketing strategies for the Beyond Application Success program.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2023</span>
+            <h3>AI Instructor - Classera E-learning</h3>
+            <p>
+              Mentored ~20 students in Saudi Arabia to build AI projects using
+              Kaggle, GitHub and open-source tools. Fostered skills in coding,
+              data analysis, and teamwork under supervision of Classera company.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2021 - Present</span>
+            <h3>Volunteer - Resala Charity</h3>
+            <p>
+              Raised ~2,000 LE for cancer patients at 57357 hospital. Assisted
+              in medical campaigns serving 150+ people in arid communities.
+              Contributed ~100 hours of community service.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Research & Publications -->
+    <section id="research">
+      <div class="container">
+        <h2 class="section-title">Research & Publications</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>3D Perception Research</h3>
+            <p>
+              Published paper on 3D perception benchmarking on KITTI & nuScenes
+              datasets. Explored cost-accuracy tradeoffs guiding robotics and
+              autonomous vehicle safety design.
+            </p>
+            <p>
+              <strong>Link:</strong> <a href="https://research-archive.org/index.php/rars/preprint/view/2821/3951" target="_blank">View Research Paper</a>
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>AI & Human Cognition Research</h3>
+            <p>
+              Authored 15+ page paper on AI and human cognition as part of Tech
+              Genius Research Program. Proposed hybrid ethical AI models and
+              analyzed benefits, risks, and societal impact.
+            </p>
+            <p>
+              <strong>Venue:</strong> Institute-Tech Genius Research Program
+              (TGI)
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>NASA Space Apps Challenge</h3>
+            <p>
+              Developed MVP prototype, app, and business plan for
+              commercializing Low Earth Orbit (LEO).
+            </p>
+            <p><strong>Venue:</strong> NASA Space Apps Challenge (Tanta)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Honors & Achievements -->
+    <section id="honors">
+      <div class="container">
+        <h2 class="section-title">Honors & Achievements</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>Gold Medalist - EISTF (Software Systems)</h3>
+            <p>
+              Awarded Gold Medal at Egypt International Science and Technology
+              Fair in Software Systems category. Competed against 500+
+              participants from Egypt and Middle East.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>International Math Bowl - Top 3.7%</h3>
+            <p>
+              Ranked in top 3.7% of 988 participants in International Math Bowl
+              competition.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>3rd Place - NASA Space Apps Challenge</h3>
+            <p>
+              Secured 3rd place at NASA Space Apps Challenge (Tanta) among ~80
+              teams for commercializing LEO with MVP prototype, app & business
+              plan.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2024</span>
+            <h3>Ebhar Misr Finalist</h3>
+            <p>
+              Selected as finalist for Ebhar Misr, a selective 2-week youth
+              innovator camp. Ranked in top 4% of 700 applicants.
+            </p>
+          </div>
+
+          <div class="timeline-item">
+            <span class="year">2023</span>
+            <h3>IoT & AI Egypt Challenge Finalist</h3>
+            <p>
+              Reached final filtration phase (out of 4 phases) in IoT & AI Egypt
+              Challenge. Ranked in top 20 of 350 participants (Top 5.7%).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+      <div class="container">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+          <p>
+            I'm always open to discussing new opportunities, research
+            collaborations, or innovative projects. Feel free to reach out!
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:yousif.abdelgawad@example.com" class="contact-link"
+              >Email</a
+            >
+            <a
+              href="https://www.linkedin.com/in/yousif-ibrahim-27646a313"
+              class="contact-link"
+              target="_blank"
+              >LinkedIn</a
+            >
+            <a href="https://github.com/yousif836" class="contact-link" target="_blank"
+              >GitHub</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 Yousif Abdelgawad. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script>
+      // Theme Toggle
+      function toggleTheme() {
+        document.body.classList.toggle("dark-mode");
+        localStorage.setItem(
+          "theme",
+          document.body.classList.contains("dark-mode") ? "dark" : "light"
+        );
+      }
+
+      // Check for saved theme preference
+      if (localStorage.getItem("theme") === "dark") {
+        document.body.classList.add("dark-mode");
+      }
+
+      // Mobile Menu Toggle
+      function toggleMenu() {
+        document.getElementById("navLinks").classList.toggle("active");
+      }
+
+      function closeMenu() {
+        document.getElementById("navLinks").classList.remove("active");
+      }
+
+      // Smooth scrolling for navigation links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Active navigation highlighting
+      window.addEventListener('scroll', function() {
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        let current = '';
+        
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop;
+          const sectionHeight = section.clientHeight;
+          if (pageYOffset >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+          }
+        });
+        
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
